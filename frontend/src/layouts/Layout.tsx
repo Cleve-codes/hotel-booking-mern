@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
 
 function Layout({}: Props) {
   return (
-    <div>Layout</div>
+    <Button>Layout</Button>
   )
 }
 
