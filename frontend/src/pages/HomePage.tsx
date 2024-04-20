@@ -20,6 +20,8 @@ const HomePage = () => {
             Donwload our app for faster ordering and personalised recommendations.
           </span>
           <img src={appDownloadImage} alt="app" />
+          <img src={appDownloadImage} alt="app" />
+
         </div>
       </div>
     </div>
