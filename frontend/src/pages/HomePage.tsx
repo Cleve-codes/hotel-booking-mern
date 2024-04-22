@@ -19,9 +19,7 @@ const HomePage = () => {
           <span>
             Donwload our app for faster ordering and personalised recommendations.
           </span>
-          <img src={appDownloadImage} alt="app" />
-          <img src={appDownloadImage} alt="app" />
-
+          <img src={appDownloadImage} alt="app" className="hover:cursor-pointer" />
         </div>
       </div>
     </div>
