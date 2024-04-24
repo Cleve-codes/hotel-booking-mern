@@ -5,9 +5,9 @@ const Footer = () => {
       <span className="text-3xl text-white font-bold tracking-tight">
           Let's Eat
       </span>
-      <span className="text-white tracking-tight flex gap-4">
-        <span>Privacy Policy</span>
-        <span>Terms of Service</span>
+      <span className="text-white font-bold tracking-tight flex gap-4">
+        <span className="hover:cursor-pointer hover:text-md">Privacy Policy</span>
+        <span className="hover:cursor-pointer hover:text-md">Terms of Service</span>
       </span>
     </div>
   </div>
