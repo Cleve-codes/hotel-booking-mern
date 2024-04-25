@@ -6,13 +6,22 @@ function MainNav() {
   const {loginWithRedirect} = useAuth0()
 
   return (
+    <>
     <Button
       variant="ghost"
-      className="font-bold hover:text-orange-500 hover:bg-white"
+      className="font-bold hover:text-orange-500"
       onClick={async () => await loginWithRedirect()}
-    >
+      >
       Login
     </Button>
+    <Button
+    variant="ghost"
+    onClick={async () => await loginWithRedirect()}
+    className="font-bold hover:text-orange-500" >
+
+      Logout
+    </Button>
+      </>
   )
 }
 
