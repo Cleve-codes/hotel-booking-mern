@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateMyUser } from "@/api/MyUserApi";
 
-
-
 const AuthCallbackPage = () => {
   const navigate = useNavigate();
   const { user } = useAuth0();
@@ -20,8 +18,7 @@ const AuthCallbackPage = () => {
     navigate("/");
   }, [createUser, navigate, user]);
 
-  return;
-  <>Loading...</>;
+  return <>Loading...</>;
 };
 
 export default AuthCallbackPage;
