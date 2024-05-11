@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, response } from "express";
 import User from "../models/user";
 
 const createCurrentUser = async (req: Request, res: Response, next: NextFunction ) => {
@@ -23,6 +23,22 @@ const createCurrentUser = async (req: Request, res: Response, next: NextFunction
     next(error);
   }
 };
+
+const updateCurrentUser = async(req: Request, res: Response, next: NextFunction) =>  {
+  try {
+
+    const { addressLine1, name, city, country } = req.body;
+    const user = await User.findById({req.userId})
+
+    if(!user) {
+      return res.status(404).json("User not found")
+    }
+
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message : "Error updating user"})
+  }
+}
 
 export default {
   createCurrentUser,
