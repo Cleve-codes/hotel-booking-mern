@@ -9,7 +9,6 @@ type CreateUseRequest = {
 }
 
 export const useCreateMyUser = () => {
-
   const { getAccessTokenSilently } = useAuth0();
 
   const createMyUserRequest = async (user: CreateUseRequest) => {
@@ -36,5 +35,4 @@ export const useCreateMyUser = () => {
     isError,
     isSuccess
   }
-
 }
