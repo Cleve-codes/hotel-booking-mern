@@ -1,6 +1,16 @@
-import { NextFunction } from "express";
 import { auth } from "express-oauth2-jwt-bearer";
 import { Request, Response, NextFunction } from "express"
+import jwt from "jsonwebtoken"
+import User from "../models/user";
+
+declare global {
+  namespace Express {
+    interface Request {
+      userId: string
+      auth0Id: string
+    }
+  }
+}
 
 export const jwtCheck = auth({
   audience: process.env.AUTH0_AUDIENCE,
@@ -10,14 +20,32 @@ export const jwtCheck = auth({
 
 export const jwtParse = async (req: Request, res: Response, next: NextFunction) => {
 
-    const { authorization } = req.headers;
+  const { authorization } = req.headers;
 
-    if(!authorization || !authorization.startsWith("Bearer ")) {
-      return res.sendStatus(401);
+  if (!authorization || !authorization.startsWith("Bearer ")) {
+    return res.sendStatus(401);
+  }
+
+
+  const token = authorization.split(" ")[1];
+
+  try {
+    const decoded = jwt.decode(token) as jwt.JwtPayload;
+    const auth0Id = decoded.sub;
+
+    const user = await User.findById({ auth0Id })
+
+    if (!user) {
+      return res.status(401)
     }
 
-
-    const token = authorization.split(" ")[1];
+    req.auth0Id = auth0Id as string;
+    req.userId = user._id.toString();
+    next()
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ message: "Unauthorized" })
+  }
 
 
 }
